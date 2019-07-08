@@ -17,11 +17,17 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $avatars = [
+        'icons8-active-male-50.png', 'icons8-lol-female-50.png', 'icons8-student-male-50.png', 'icons8-student-male-50-2.png', 'icons8-user-50.png', 'icons8-user-50-2.png', 'icons8-user-50-3.png', 'icons8-writer-male-50.png'
+    ];
+
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'level' => rand(1, 5) * 100,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
+        'avatar' => $avatars[rand(0, count($avatars) - 1)]
     ];
 });
